@@ -33,6 +33,10 @@
 		float: left;
 		max-width: 500px;
 	}
+    select,
+    option{
+        width: 100%;
+    }
 	.block-head {
 		width: 100%;
 		color: #fff;

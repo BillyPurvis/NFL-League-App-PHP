@@ -7,7 +7,6 @@
     }
 ?>
 
-
 	<h1 class="page-title">NFL Standings 2016</h1>
 	<table>
 		<tr>
@@ -67,6 +66,22 @@
 				<input type="text" name="teamName">
 			</div>
             <div class="form-field">
+                <label>Conference</label>
+                <select name="teamDivision">
+                    <option value="AFC">AFC</option>
+                    <option value="NFC">NFC</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label>Division</label>
+                <select name="teamConference">
+                    <option value="North">North</option>
+                    <option value="East">East</option>
+                    <option value="South">South</option>
+                    <option value="West">West</option>
+                </select>
+            </div>
+            <div class="form-field">
                 <label>Points For</label>
                 <input type="number" value="0" name="teamPF">
             </div>
@@ -90,14 +105,6 @@
 				<label>TDs</label>
 				<input type="number" value="0" min="0" name="teamTDs">
 			</div>
-            <div class="form-field">
-                <label>Conference</label>
-                <input type="text" name="teamConference">
-            </div>
-            <div class="form-field">
-                <label>Division</label>
-                <input type="text" name="teamDivision">
-            </div>
 		</div>
 		<button class="form-footer-btn" type="submit">Add Team</button>
 	</form>
