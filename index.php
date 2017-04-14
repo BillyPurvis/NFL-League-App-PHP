@@ -3,17 +3,20 @@
 	require('fetchAll.php');
 ?>
 
+
 	<h1 class="page-title">NFL Standings 2016</h1>
 	<table>
 		<tr>
 			<td>NFL Team</td>
-			<td>Net PTs</td>
-			<td>PF</td>
-			<td>PA</td>
-			<td>W</td>
-			<td>L</td>
-			<td>T</td>
-			<td>TDs</td>
+            <td><a href="/">Net PTs</a></td>
+			<td><a href="?q=teamPF">PF</a></td>
+			<td><a href="?q=teamPA">PA</a></td>
+			<td><a href="?q=teamWins">W</a></td>
+			<td><a href="?q=teamLoses">L</a></td>
+			<td><a href="?q=teamTies">T</a></td>
+			<td><a href="?q=teamTDs">TDs</a></td>
+            <td>Conference</td>
+            <td>Division</td>
 			<td>Eject Team</td>
 			<td>Edit Team</td>
 		</tr>
@@ -28,6 +31,8 @@
 					<td><?= $teamItem['teamLoses']; ?></td>
 					<td><?= $teamItem['teamTies']; ?></td>
 					<td><?= $teamItem['teamTDs']; ?></td>
+                    <td><?= $teamItem['teamConference']; ?></td>
+                    <td><?= $teamItem['teamDivision']; ?></td>
 					<td>
 						<a class="btn" href="/team/?q=<?= $teamItem['id'] ?>">Edit</a>
 					</td>
@@ -81,6 +86,14 @@
 				<label>TDs</label>
 				<input type="number" value="0" min="0" name="teamTDs">
 			</div>
+            <div class="form-field">
+                <label>Conference</label>
+                <input type="text" name="teamConference">
+            </div>
+            <div class="form-field">
+                <label>Division</label>
+                <input type="text" name="teamDivision">
+            </div>
 		</div>
 		<button class="form-footer-btn" type="submit">Add Team</button>
 	</form>
@@ -92,7 +105,6 @@
             The <strong>ACF</strong> (American Football Conference) and <strong>NFC</strong> (National Football Conference), each with 16 teams within
             their conference make up the <strong>32 NFL</strong> teams. Within the each conference, there are 4 divisions; North, East, South & West.
         </p>
-        <a href="q=teamTDs">Order By TDs</a>
     </div>
 
 <?php require('foot.php'); ?>
