@@ -1,6 +1,10 @@
 <?php 
 	require('head.php');
 	require('fetchAll.php');
+
+	function queryFieldLength($queryResults) {
+	    return $queryResults->field_count;
+    }
 ?>
 
 
@@ -47,7 +51,7 @@
 			<?php else : ?>
 				<tr>
                     
-					<td colspan="9" style="text-align: center;"><br>No teams found!</td>
+					<td colspan="<?= queryFieldLength($queryResults); ?>" style="text-align: center;"><br>No teams found!</td>
 				</tr>
 		<?php endif; ?>
 
