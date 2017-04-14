@@ -16,12 +16,15 @@
 		background: #f2f2f2;
 	}
 	tr:first-of-type {
-		color: #fff;
+        color: #fff;
 		font-size: 18px;
 		font-weight: 700;
 		background: #1E3C71;
 		letter-spacing: 0.5px;
 	}
+    tr:first-of-type a {
+        color: #fff;
+    }
 	form {
 		float: left;
 		width: 320px;
