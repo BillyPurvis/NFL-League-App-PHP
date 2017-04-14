@@ -41,7 +41,8 @@
 
 			<?php else : ?>
 				<tr>
-					<td colspan="7" style="text-align: center;"><br>No teams found!</td>
+                    
+					<td colspan="9" style="text-align: center;"><br>No teams found!</td>
 				</tr>
 		<?php endif; ?>
 
@@ -89,8 +90,9 @@
         </div>
         <p>
             The <strong>ACF</strong> (American Football Conference) and <strong>NFC</strong> (National Football Conference), each with 16 teams within
-            their conference make up the 32 NFL teams. Within the each conference, there are 4 divisions; North, East, South & West.
+            their conference make up the <strong>32 NFL</strong> teams. Within the each conference, there are 4 divisions; North, East, South & West.
         </p>
+        <a href="q=teamTDs">Order By TDs</a>
     </div>
 
 <?php require('foot.php'); ?>

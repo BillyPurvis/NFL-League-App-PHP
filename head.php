@@ -29,7 +29,6 @@
 	table {
 		float: left;
 		max-width: 500px;
-		margin-right: 50px;
 	}
 	.block-head {
 		width: 100%;
@@ -65,6 +64,9 @@
 	.form-field {
 		margin-bottom: 20px;
 	}
+    #add-team-form {
+        margin: 0 50px;
+    }
 	.btn {
 		border: 0;
 		color: #fff;
@@ -134,7 +136,6 @@
 	}
     .info {
         width: 400px;
-        margin-left: 50px;
         float: left;
     }
     .info p {
