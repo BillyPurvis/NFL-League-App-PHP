@@ -6,9 +6,7 @@
 	$teamID = $_GET['q'];
 	// statement
 	$fetchSingleQuery = "SELECT * FROM nfl_teams WHERE id=$teamID";
-
 	$queryResults = $connection->query($fetchSingleQuery);
-	 
 	$connection->close(); 
 ?>
 	<h1 class="page-title">NFL Standings 2016</h1>

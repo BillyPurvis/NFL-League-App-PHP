@@ -40,9 +40,7 @@
 						<a class="btn" href="/team/?q=<?= $teamItem['id'] ?>">Edit</a>
 					</td>
 					<td>
-						<form class="delete-form" method="POST" action="/delete.php">
-							<button class="btn alt" name="teamID" value="<?= $teamItem['id']; ?>" type="submit">Delete</button>
-						</form>
+                        <a class="btn alt" href="/delete.php?teamID=<?= $teamItem['id'] ?>">Delete</a>
 					</td>
 				</tr>
 			<?php endforeach; ?>
