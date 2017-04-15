@@ -122,9 +122,6 @@
 		padding-left: 2px;
 		margin-bottom: 15px;
 	}
-	.delete-form {
-		width: auto;
-	}
 	.alert {
 		margin: 10px 0;
 		font-size: 14px;
