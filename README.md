@@ -6,7 +6,6 @@ Work Related Test, intentionally using outdated methods.
 
 # To do (Phase 2)
 
-
 - Look into cleaning the MySQL insert query to a shorter syntax
 
 
