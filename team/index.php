@@ -28,10 +28,34 @@
 							<label>Team Name</label>
 							<input type="text" name="teamName" value="<?= html_entity_decode($teamItem['teamName']); ?>">
 						</div>
-						<div class="form-field">
-							<label>Net PTs</label>
-							<input type="number" name="teamPoints" value="<?= $teamItem['teamPoints']; ?>">
-						</div>
+                        <div class="form-field">
+                            <label>Conference</label>
+                            <select name="teamConference">
+                                <?php
+                                    if ($teamItem['teamConference'] == "NFC") : ?>
+                                        <option selected value="NFC">NFC</option>
+                                        <option value="AFC">AFC</option>
+                                    <?php elseif($teamItem['teamConference'] != "NFC") : ?>
+                                        <option value="NFC">NFC</option>
+                                        <option selected value="AFC">AFC</option>
+                                <?php endif; ?>
+
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label>Division</label>
+                            <select name="teamDivision">
+                                <?php
+                                    $division = ['ACN', 'ACE', 'ACS', 'ACW', 'NCN', 'NCE', 'NCS', 'NCW'];
+                                    foreach ($division as $divisionName) : ?>
+                                        <?php if ($divisionName == $teamItem['teamDivision']) : ?>
+                                            <option value="<?= $divisionName; ?>" selected><?= $divisionName; ?></option>
+                                        <?php else : ?>
+                                        <option value="<?= $divisionName; ?>"><?= $divisionName; ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                            </select>
+                        </div>
 						<div class="form-field">
 							<label>Wins</label>
 							<input type="number" min="0" max="16" name="teamWins" value="<?= $teamItem['teamWins']; ?>">
