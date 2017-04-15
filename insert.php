@@ -10,21 +10,26 @@
 		}
 	}
 	// Fetch Form Data
-	$teamName  	  = $formDataArray['teamName'];
-	$teamConf     = $formDataArray['teamConference'];
-	$teamDivision = $formDataArray['teamDivision'];
-    $teamPF       = $formDataArray['teamPF'];
-    $teamPA       = $formDataArray['teamPA'];
-	$teamWins 	  = $formDataArray['teamWins'];
-	$teamLoses	  = $formDataArray['teamLoses'];
-	$teamTies 	  = $formDataArray['teamTies'];
-	$teamTDs 	  = $formDataArray['teamTDs'];
-
-
+    $insertData = [
+        'teamName'      => $formDataArray['teamName'] . '\'',
+        'teamConference'      => $formDataArray['teamConference'] . '\'',
+        'teamPoints'    => $formDataArray['teamPF'] - $formDataArray['teamPA'] . '\'',
+        'teamPF'        => $formDataArray['teamPF'] . '\'',
+        'teamPA'        => $formDataArray['teamPA'] . '\'',
+        'teamWins '	    => $formDataArray['teamWins'] . '\'',
+        'teamLoses'	    => $formDataArray['teamLoses'] . '\'',
+        'teamTies'	    => $formDataArray['teamTies'] . '\'',
+        'teamTDs'	    => $formDataArray['teamTDs'] . '\'',
+    ];
 	// Build Query
-	$sqlQuery = "INSERT INTO nfl_teams (teamName, teamConference, teamDivision, teamPoints, teamPF, teamPA, teamWins, teamLoses, teamTies, teamTDs) VALUES ('$teamName', '$teamConf', '$teamDivision', $teamPF-$teamPA, $teamPF, $teamPA, $teamWins, $teamLoses, $teamTies, $teamTDs)";
+	//$sqlQuery = "INSERT INTO nfl_teams (teamName, teamConference, teamDivision, teamPoints, teamPF, teamPA, teamWins, teamLoses, teamTies, teamTDs) VALUES ('$teamName', '$teamConf', '$teamDivision', $teamPF-$teamPA, $teamPF, $teamPA, $teamWins, $teamLoses, $teamTies, $teamTDs)";
 
-	if(!$connection->query($sqlQuery)) {
+    $newSql = sprintf('INSERT INTO nfl_teams (%s) values (%s)',
+        implode(',', array_keys($insertData)),
+        '\'' . implode(', \'', array_values($insertData))
+    );
+
+	if(!$connection->query($newSql)) {
 		$_SESSION['error'] = $connection->error;
 	} else {
 		$_SESSION['success'] = "Succesfully added $teamName!";
