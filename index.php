@@ -67,18 +67,22 @@
 			</div>
             <div class="form-field">
                 <label>Conference</label>
-                <select name="teamDivision">
+                <select name="teamConference">
                     <option value="AFC">AFC</option>
                     <option value="NFC">NFC</option>
                 </select>
             </div>
             <div class="form-field">
                 <label>Division</label>
-                <select name="teamConference">
-                    <option value="North">North</option>
-                    <option value="East">East</option>
-                    <option value="South">South</option>
-                    <option value="West">West</option>
+                <select name="teamDivision">
+                    <option value="ACN">ACN</option>
+                    <option value="ACE">ACE</option>
+                    <option value="ACS">ACS</option>
+                    <option value="ACW">ACW</option>
+                    <option value="NCN">NCN</option>
+                    <option value="NCE">NCE</option>
+                    <option value="NCS">NCS</option>
+                    <option value="NCW">NCW</option>
                 </select>
             </div>
             <div class="form-field">

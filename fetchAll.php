@@ -12,7 +12,6 @@
     } elseif (isset($divisionOpt)) {
         $statementAppend = "WHERE teamDivision='$divisionOpt'";
     }
-
 	// statement
     $statement = "SELECT * FROM nfl_teams $statementAppend ORDER BY $orderBy DESC";
 	$queryResults = $connection->query($statement);
