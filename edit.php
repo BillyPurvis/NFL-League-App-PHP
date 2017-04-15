@@ -11,7 +11,8 @@
 	// Fetch Form Data
 	$teamID 	= $formDataArray['teamID'];
 	$teamName  	= $formDataArray['teamName'];
-	$teamPoints = $formDataArray['teamPoints'];
+    $teamConf     = $formDataArray['teamConference'];
+    $teamDivision = $formDataArray['teamDivision'];
 	$teamWins 	= $formDataArray['teamWins'];
 	$teamLoses	= $formDataArray['teamLoses'];
 	$teamTies 	= $formDataArray['teamTies'];
@@ -19,7 +20,8 @@
 	// Build Query
 	$sqlQuery = "UPDATE nfl_teams SET 
 		teamName='$teamName',
-		teamPoints='$teamPoints',
+		teamConference='$teamConf',
+		teamConference='$teamDivision',
 		teamWins='$teamWins',
 		teamLoses='$teamLoses',
 		teamTies='$teamTies',
