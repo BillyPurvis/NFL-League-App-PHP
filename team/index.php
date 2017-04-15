@@ -32,26 +32,26 @@
                             <label>Conference</label>
                             <select name="teamConference">
                                 <?php
-                                    if ($teamItem['teamConference'] == "NFC") : ?>
-                                        <option selected value="NFC">NFC</option>
-                                        <option value="AFC">AFC</option>
-                                    <?php elseif($teamItem['teamConference'] != "NFC") : ?>
-                                        <option value="NFC">NFC</option>
-                                        <option selected value="AFC">AFC</option>
-                                <?php endif; ?>
-
+                                    $conferences = ['AFC', 'NFC'];
+                                    foreach ($conferences as $conference) : ?>
+                                        <?php if ($conference == $teamItem['teamConference']) : ?>
+                                            <option selected value="<?= $conference ?>"><?= $conference ?></option>
+                                        <?php else : ?>
+                                            <option value="<?= $conference ?>"><?= $conference ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-field">
                             <label>Division</label>
                             <select name="teamDivision">
                                 <?php
-                                    $division = ['ACN', 'ACE', 'ACS', 'ACW', 'NCN', 'NCE', 'NCS', 'NCW'];
-                                    foreach ($division as $divisionName) : ?>
-                                        <?php if ($divisionName == $teamItem['teamDivision']) : ?>
-                                            <option value="<?= $divisionName; ?>" selected><?= $divisionName; ?></option>
+                                    $divisions = ['ACN', 'ACE', 'ACS', 'ACW', 'NCN', 'NCE', 'NCS', 'NCW'];
+                                    foreach ($divisions as $division) : ?>
+                                        <?php if ($division == $teamItem['teamDivision']) : ?>
+                                            <option value="<?= $division; ?>" selected><?= $division; ?></option>
                                         <?php else : ?>
-                                        <option value="<?= $divisionName; ?>"><?= $divisionName; ?></option>
+                                        <option value="<?= $division; ?>"><?= $division; ?></option>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                             </select>
