@@ -1,19 +1,25 @@
 <?php 
 	require('head.php');
 	require('fetchAll.php');
+
+	function queryFieldLength($queryResults) {
+	    return $queryResults->field_count;
+    }
 ?>
 
 	<h1 class="page-title">NFL Standings 2016</h1>
 	<table>
 		<tr>
 			<td>NFL Team</td>
-			<td>Net PTs</td>
-			<td>PF</td>
-			<td>PA</td>
-			<td>W</td>
-			<td>L</td>
-			<td>T</td>
-			<td>TDs</td>
+            <td><a href="/">Net PTs</a></td>
+			<td><a href="?q=teamPF">PF</a></td>
+			<td><a href="?q=teamPA">PA</a></td>
+			<td><a href="?q=teamWins">W</a></td>
+			<td><a href="?q=teamLoses">L</a></td>
+			<td><a href="?q=teamTies">T</a></td>
+			<td><a href="?q=teamTDs">TDs</a></td>
+            <td>Conference</td>
+            <td>Division</td>
 			<td>Eject Team</td>
 			<td>Edit Team</td>
 		</tr>
@@ -28,6 +34,8 @@
 					<td><?= $teamItem['teamLoses']; ?></td>
 					<td><?= $teamItem['teamTies']; ?></td>
 					<td><?= $teamItem['teamTDs']; ?></td>
+                    <td><?= $teamItem['teamConference']; ?></td>
+                    <td><?= $teamItem['teamDivision']; ?></td>
 					<td>
 						<a class="btn" href="/team/?q=<?= $teamItem['id'] ?>">Edit</a>
 					</td>
@@ -41,7 +49,8 @@
 
 			<?php else : ?>
 				<tr>
-					<td colspan="7" style="text-align: center;"><br>No teams found!</td>
+                    
+					<td colspan="<?= queryFieldLength($queryResults); ?>" style="text-align: center;"><br>No teams found!</td>
 				</tr>
 		<?php endif; ?>
 
@@ -56,6 +65,26 @@
 				<label>Team Name</label>
 				<input type="text" name="teamName">
 			</div>
+            <div class="form-field">
+                <label>Conference</label>
+                <select name="teamConference">
+                    <option value="AFC">AFC</option>
+                    <option value="NFC">NFC</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label>Division</label>
+                <select name="teamDivision">
+                    <option value="ACN">ACN</option>
+                    <option value="ACE">ACE</option>
+                    <option value="ACS">ACS</option>
+                    <option value="ACW">ACW</option>
+                    <option value="NCN">NCN</option>
+                    <option value="NCE">NCE</option>
+                    <option value="NCS">NCS</option>
+                    <option value="NCW">NCW</option>
+                </select>
+            </div>
             <div class="form-field">
                 <label>Points For</label>
                 <input type="number" value="0" name="teamPF">
@@ -89,7 +118,7 @@
         </div>
         <p>
             The <strong>ACF</strong> (American Football Conference) and <strong>NFC</strong> (National Football Conference), each with 16 teams within
-            their conference make up the 32 NFL teams. Within the each conference, there are 4 divisions; North, East, South & West.
+            their conference make up the <strong>32 NFL</strong> teams. Within the each conference, there are 4 divisions; North, East, South & West.
         </p>
     </div>
 

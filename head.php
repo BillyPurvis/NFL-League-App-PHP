@@ -16,12 +16,15 @@
 		background: #f2f2f2;
 	}
 	tr:first-of-type {
-		color: #fff;
+        color: #fff;
 		font-size: 18px;
 		font-weight: 700;
 		background: #1E3C71;
 		letter-spacing: 0.5px;
 	}
+    tr:first-of-type a {
+        color: #fff;
+    }
 	form {
 		float: left;
 		width: 320px;
@@ -29,8 +32,11 @@
 	table {
 		float: left;
 		max-width: 500px;
-		margin-right: 50px;
 	}
+    select,
+    option{
+        width: 100%;
+    }
 	.block-head {
 		width: 100%;
 		color: #fff;
@@ -65,6 +71,9 @@
 	.form-field {
 		margin-bottom: 20px;
 	}
+    #add-team-form {
+        margin: 0 50px;
+    }
 	.btn {
 		border: 0;
 		color: #fff;
@@ -134,7 +143,6 @@
 	}
     .info {
         width: 400px;
-        margin-left: 50px;
         float: left;
     }
     .info p {
