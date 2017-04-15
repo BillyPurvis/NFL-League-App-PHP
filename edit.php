@@ -21,7 +21,7 @@
 	$sqlQuery = "UPDATE nfl_teams SET 
 		teamName='$teamName',
 		teamConference='$teamConf',
-		teamConference='$teamDivision',
+		teamDivision='$teamDivision',
 		teamWins='$teamWins',
 		teamLoses='$teamLoses',
 		teamTies='$teamTies',
@@ -31,7 +31,7 @@
 	if(!$connection->query($sqlQuery)) {
 		$_SESSION['error'] = $connection->error;
 	} else {
-		$_SESSION['success'] = "Succesfully added $teamName!";
+		$_SESSION['success'] = "Successfully updated $teamName!";
 	}
 
 	header('location: /');
