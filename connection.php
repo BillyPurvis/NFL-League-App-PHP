@@ -10,5 +10,4 @@
 	}
 
 	// instantiate session
-	session_name('formSession');
     session_start();
