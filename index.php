@@ -1,6 +1,6 @@
 <?php 
 	require('head.php');
-	require('fetchAll.php');
+	require(__DIR__.'/core/bootstrap.php');
 
 	function queryFieldLength($queryResults) {
 	    return $queryResults->field_count;

@@ -1,6 +1,6 @@
-<?php 
-	
-	require('connection.php');
+<?php
+
+require(__DIR__.'/core/bootstrap.php');
 
 	$teamID = $_GET['teamID'];
 	// delete statement

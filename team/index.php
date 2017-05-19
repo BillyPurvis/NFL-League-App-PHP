@@ -1,9 +1,8 @@
-<?php 
+<?php
+    require(__DIR__.'/../head.php');
+    require(__DIR__.'/../core/bootstrap.php');
 
-	require('../head.php');
-	require('../connection.php');
-
-	$teamID = $_GET['q'];
+    $teamID = $_GET['q'];
 	// statement
 	$fetchSingleQuery = "SELECT * FROM nfl_teams WHERE id=$teamID";
 	$queryResults = $connection->query($fetchSingleQuery);

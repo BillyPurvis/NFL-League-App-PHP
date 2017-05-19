@@ -1,6 +1,6 @@
 <?php
-	
-	require('connection.php');
+
+require(__DIR__.'/core/bootstrap.php');
 
 	if(isset($_POST)) {
 		// Sanitize data

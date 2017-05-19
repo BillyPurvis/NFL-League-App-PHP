@@ -1,6 +1,4 @@
 <?php 
-	
-	require('connection.php');
 
     $orderBy = isset($_GET['q']) ? $_GET['q'] : 'teamPoints';
     $conferenceOpt = isset($_GET['c']) ? $_GET['c'] : null;
@@ -15,8 +13,4 @@
 	// statement
     $statement = "SELECT * FROM nfl_teams $statementAppend ORDER BY $orderBy DESC";
 	$queryResults = $connection->query($statement);
-	$connection->close();
-	/*
-	 * Before xDebug throws a wobbly with mySQL...
-	 */
-    unset($connection);
+
