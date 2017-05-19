@@ -7,4 +7,4 @@ $playerID = $_GET['playerID'];
 $deleteQuery = "DELETE FROM nfl_players WHERE id=$playerID";
 $connection->query($deleteQuery);
 
-header('location: /');
+header('location: /players');

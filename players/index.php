@@ -26,7 +26,7 @@ require(__DIR__.'/../core/bootstrap.php');
                     <a class="btn" href="/players/?q=<?= $player['id'] ?>">Edit</a>
                 </td>
                 <td>
-                    <a class="btn alt" href="/delete.php?playerID=<?= $player['id'] ?>">Delete</a>
+                    <a class="btn alt" href="/players/delete.php?playerID=<?= $player['id'] ?>">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>
