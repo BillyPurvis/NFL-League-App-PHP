@@ -37,6 +37,7 @@
     option{
         width: 100%;
     }
+    .form-head,
 	.block-head {
 		width: 100%;
 		color: #fff;
