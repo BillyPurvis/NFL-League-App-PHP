@@ -20,8 +20,8 @@ function queryFieldLength($queryResults) {
         <td><a href="?q=teamTDs">TDs</a></td>
         <td>Conference</td>
         <td>Division</td>
-        <td>Eject Team</td>
         <td>Edit Team</td>
+        <td>Eject Team</td>
     </tr>
     <?php if (!empty($queryResults->num_rows)) : ?>
         <?php foreach ($queryResults as $teamItem) : ?>
