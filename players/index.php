@@ -9,10 +9,9 @@ require(__DIR__.'/../core/bootstrap.php');
         <td>Player's Name</td>
         <td>Player's Team</td>
         <td>Player's Position</td>
+        <td>Edit Player</td>
+        <td>Eject Player</td>
     </tr>
-
-
-    
     <?php if (!empty($players->num_rows)) : ?>
         <?php foreach ($players as $player) : ?>
             <tr>
@@ -23,12 +22,17 @@ require(__DIR__.'/../core/bootstrap.php');
                     <?php endif; ?>
                 <?php endforeach; ?>
                 <td><?= html_entity_decode($player['playerPosition']); ?></td>
+                <td>
+                    <a class="btn" href="/players/?q=<?= $player['id'] ?>">Edit</a>
+                </td>
+                <td>
+                    <a class="btn alt" href="/delete.php?playerID=<?= $player['id'] ?>">Delete</a>
+                </td>
             </tr>
         <?php endforeach; ?>
 
         <?php else : ?>
             <tr>
-
                 <td colspan="<?= $players->field_count ?>" style="text-align: center;"><br>No Player found!</td>
             </tr>
     <?php endif; ?>
