@@ -3,29 +3,38 @@ require(__DIR__.'/../head.php');
 require(__DIR__.'/../core/bootstrap.php');
 ?>
 
-<h1 class="page-title">NFL Standings 2016</h1>
+<h1 class="page-title">NFL Players 2016</h1>
 <table>
     <tr>
-        <td>NFL Players</td>
+        <td>Player's Name</td>
+        <td>Player's Team</td>
+        <td>Player's Position</td>
     </tr>
 
+
+    
     <?php if (!empty($players->num_rows)) : ?>
         <?php foreach ($players as $player) : ?>
             <tr>
                 <td><?= html_entity_decode($player['playerName']); ?></td>
-
+                <?php foreach ($queryResults as $teamItem) : ?>
+                    <?php if ($teamItem['id'] === $player['playerTeamID']) :?>
+                        <td><?= html_entity_decode($teamItem['teamName']); ?></td>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <td><?= html_entity_decode($player['playerPosition']); ?></td>
             </tr>
         <?php endforeach; ?>
 
         <?php else : ?>
             <tr>
 
-                <td colspan="<?= queryFieldLength($players); ?>" style="text-align: center;"><br>No Player found!</td>
+                <td colspan="<?= $players->field_count ?>" style="text-align: center;"><br>No Player found!</td>
             </tr>
     <?php endif; ?>
 
 </table>
-<form id="add-team-form" method="POST" action="/insert.php">
+<form id="add-team-form" method="POST" action="/players/insert.php">
     <?php require('../feedback.php') ?>
     <div class="block-head">
         <h1>Add Your Team</h1>
@@ -41,7 +50,7 @@ require(__DIR__.'/../core/bootstrap.php');
         </div>
         <div class="form-field">
             <label>Player's Team</label>
-            <select name="playerTeam">
+            <select name="playerTeamID">
                 <?php foreach ($queryResults as $teamItem) : ?>
                     <option value="<?= $teamItem['id'] ?>"><?= $teamItem['teamName'] ?></option>
                 <?php endforeach; ?>
