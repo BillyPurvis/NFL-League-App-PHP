@@ -1,11 +1,6 @@
-<?php 
-
+<?php
 require(__DIR__.'/../head.php');
 require(__DIR__.'/../core/bootstrap.php');
-
-function queryFieldLength($queryResults) {
-    return $queryResults->field_count;
-}
 ?>
 
 <h1 class="page-title">NFL Standings 2016</h1>
@@ -24,8 +19,9 @@ function queryFieldLength($queryResults) {
         <td>Eject Team</td>
         <td>Edit Team</td>
     </tr>
-    <?php if (!empty($queryResults->num_rows)) : ?>
-        <?php foreach ($queryResults as $player) : ?>
+
+    <?php if (!empty($players->num_rows)) : ?>
+        <?php foreach ($players as $player) : ?>
             <tr>
                 <td><?= html_entity_decode($player['playerName']); ?></td>
 
@@ -35,7 +31,7 @@ function queryFieldLength($queryResults) {
         <?php else : ?>
             <tr>
 
-                <td colspan="<?= queryFieldLength($queryResults); ?>" style="text-align: center;"><br>No Player found!</td>
+                <td colspan="<?= queryFieldLength($players); ?>" style="text-align: center;"><br>No Player found!</td>
             </tr>
     <?php endif; ?>
 
