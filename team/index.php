@@ -11,7 +11,7 @@ $connection->close();
 <h1 class="page-title">NFL Standings 2016</h1>
     <?php if (!empty($queryResults)) : ?>
         <?php foreach ($queryResults as $teamItem) : ?>
-            <form id="add-team-form" method="POST" action="../edit.php">
+            <form id="add-team-form" method="POST" action="../players/profile/edit.php">
                 <?php require('../feedback.php') ?>
                 <div class="form-head">
                     <h1>Edit Your Team</h1>
