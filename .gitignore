@@ -1,2 +1,3 @@
-core/
+core/config.php
+core/connection.php
 .idea/
