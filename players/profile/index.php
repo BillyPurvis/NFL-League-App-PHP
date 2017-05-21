@@ -13,18 +13,18 @@ $teamResults = getAllTeams();
 <h1 class="page-title">NFL Standings 2016</h1>
     <?php if (!empty($players)) : ?>
         <?php foreach ($players as $player) : ?>
-            <?php $currentPlayer = getPlayerTeamName($teamResults, $player); ?>
+            <?php $currentPlayerTeam = getPlayerTeamName($teamResults, $player); ?>
             <div class="info">
                 <div class="block-head">
                     <h1><?= $player['playerName'] ?></h1>
                 </div>
                 <ul>
-                    <li><strong>Player's Team:</strong></li>
-                    <li><strong>Player's Age:</strong></li>
+                    <li><strong>Player's Team:</strong> <?= $currentPlayerTeam; ?></li>
+                    <li><strong>Player's Age:</strong> <?= $player['playerAge']; ?></li>
                 </ul>
-                <span><strong>Player's Story</strong></span>
+                <h2><strong>Player's Story</strong></h2>
                 <p>
-                    ipsmu
+                    <?= $player['playerBio']; ?>
                 </p>
             </div>
             <form id="add-team-form" method="POST" action="/players/profile/edit.php">
@@ -49,8 +49,8 @@ $teamResults = getAllTeams();
                         <label>Player's Team</label>
                         <select name="playerTeamID" id="">
                             <?php foreach ($teamResults as $teamResult) :?>
-                                <?php if($teamResult['teamName']  === $currentPlayer) : ?>
-                                    <option value="<?= $currentPlayer?>" selected><?= $currentPlayer ?></option>
+                                <?php if($teamResult['teamName']  === $currentPlayerTeam) : ?>
+                                    <option value="<?= $currentPlayerTeam?>" selected><?= $currentPlayerTeam ?></option>
                                     <?php else:?>
                                     <option value="<?= $teamResult['teamName']; ?>"><?= $teamResult['teamName']; ?></option>
                                 <?php endif ?>
