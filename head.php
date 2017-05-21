@@ -37,6 +37,24 @@
     option{
         width: 100%;
     }
+    ul {
+        padding-left: 5px;
+        list-style: none;
+    }
+    ul strong {
+        width: 100%;
+        margin: 5px 0;
+        display: inline-block;
+    }
+    li {
+        width: 100%;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+    li:last-child {
+        margin-bottom: 0;
+    }
+    .form-head,
 	.block-head {
 		width: 100%;
 		color: #fff;
@@ -52,22 +70,28 @@
 		background: #f2f2f2;
 	}
 	label,
-	input {
+	input,
+    textarea {
 		display: block;
 	}
 	label {
 		margin-bottom: 8px;
 	}
-	input {
+	input,
+    textarea {
 		color: #222;
 		width: 100%;
 		height: 25px;
 		font-size: 14px;
 		border-radius: 3px;
-		text-indent: 5px;
+		padding-left: 5px;
 		border-color: transparent;
 		font-family: 'Helvetica Neue', sans-serif;
 	}
+    textarea {
+        height: 120px;
+        padding: 10px 5px;
+    }
 	.form-field {
 		margin-bottom: 20px;
 	}
@@ -147,6 +171,14 @@
         line-height: 26px;
         padding-left: 5px;
         color: dimgrey;
+    }
+    .info h2 {
+        font-size: 22px;
+        padding-left: 5px;
+        padding-bottom: 8px;
+        margin-top: 20px;
+        margin-bottom: 5px;
+        border-bottom: 2px solid #1E3C71;
     }
 </style>
 <body>

@@ -1,10 +1,10 @@
-<?php 
-	
-	require('connection.php');
+<?php
 
-	$teamID = $_GET['teamID'];
-	// delete statement
-	$deleteQuery = "DELETE FROM nfl_teams WHERE id=$teamID";
-	$connection->query($deleteQuery);
+require(__DIR__.'/core/bootstrap.php');
 
-	header('location: /');
+$teamID = $_GET['teamID'];
+// delete statement
+$deleteQuery = "DELETE FROM nfl_teams WHERE id=$teamID";
+$connection->query($deleteQuery);
+
+header('location: /');
