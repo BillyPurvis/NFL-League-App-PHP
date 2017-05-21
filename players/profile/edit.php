@@ -13,12 +13,14 @@ if(isset($_POST)) {
 $playerID = $formDataArray['playerID'];
 $playerName = $formDataArray['playerName'];
 $playerTeamID = $formDataArray['playerTeamID'];
+$playerBio = $formDataArray['playerBio'];
 $playerPosition = $formDataArray['playerPosition'];
 
 // Build Query
 $sqlQuery = "UPDATE nfl_players SET 
     playerName='$playerName',
     playerTeamID='$playerTeamID',
+    playerBio='$playerBio',
     playerPosition='$playerPosition'
 WHERE id=$playerID";
 

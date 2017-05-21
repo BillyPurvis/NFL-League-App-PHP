@@ -12,11 +12,11 @@ if(isset($_POST)) {
 // Fetch Form Data
 $playerName = $formDataArray['playerName'];
 $playerTeamID = $formDataArray['playerTeamID'];
+$playerBio = $formDataArray['playerBio'];
 $playerPosition = $formDataArray['playerPosition'];
 
-$sqlQuery = "INSERT INTO nfl_players (playerName, playerTeamID, playerPosition) 
-
-VALUES ('$playerName', '$playerTeamID', '$playerPosition')";
+$sqlQuery = "INSERT INTO nfl_players (playerName, playerTeamID, playerBio, playerPosition)
+VALUES ('$playerName','$playerTeamID','$playerPosition','$playerBio')";
 
 if(!$connection->query($sqlQuery)) {
     $_SESSION['error'] = $connection->error;

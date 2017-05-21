@@ -57,6 +57,10 @@ $teamResults = getAllTeams();
                             <?php endforeach; ?>
                         </select>
                     </div>
+                    <div class="form-field">
+                        <label for="playerBio"></label>
+                        <textarea name="playerBio" id="" placeholder="Write bio..."></textarea>
+                    </div>
                 </div>
                 <button class="form-footer-btn" type="submit">Add Team</button>
             </form>
