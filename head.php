@@ -84,13 +84,13 @@
 		height: 25px;
 		font-size: 14px;
 		border-radius: 3px;
-		text-indent: 5px;
+		padding-left: 5px;
 		border-color: transparent;
 		font-family: 'Helvetica Neue', sans-serif;
 	}
     textarea {
         height: 120px;
-        padding: 10px 0;
+        padding: 10px 5px;
     }
 	.form-field {
 		margin-bottom: 20px;
