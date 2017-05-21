@@ -16,7 +16,7 @@ $playerBio = $formDataArray['playerBio'];
 $playerPosition = $formDataArray['playerPosition'];
 
 $sqlQuery = "INSERT INTO nfl_players (playerName, playerTeamID, playerBio, playerPosition)
-VALUES ('$playerName','$playerTeamID','$playerPosition','$playerBio')";
+VALUES ('$playerName','$playerTeamID','$playerBio','$playerPosition')";
 
 if(!$connection->query($sqlQuery)) {
     $_SESSION['error'] = $connection->error;

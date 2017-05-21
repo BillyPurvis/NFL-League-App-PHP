@@ -49,7 +49,7 @@ $teamResults = getAllTeams();
         </div>
         <div class="form-field">
             <label>Field Position</label>
-            <input type="text" name="playerPosition">
+            <input maxlength="3" type="text" name="playerPosition">
         </div>
         <div class="form-field">
             <label>Player's Team</label>
@@ -61,7 +61,7 @@ $teamResults = getAllTeams();
         </div>
         <div class="form-field">
             <label for="playerBio"></label>
-            <textarea name="playerBio" placeholder="Write bio..."></textarea>
+            <textarea maxlength="250" name="playerBio" placeholder="Write bio..."></textarea>
         </div>
     </div>
     <button class="form-footer-btn" type="submit">Add Team</button>
