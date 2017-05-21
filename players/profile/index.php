@@ -53,12 +53,9 @@ $teamResults = getAllTeams();
                         <label>Player's Team</label>
                         <select name="playerTeamID" id="">
                             <?php foreach ($teamResults as $teamResult) :?>
-                                <?php if($teamResult['teamName']  === $currentPlayerTeam) :
-                                    // TODO Make team option value an integer id not string
-
-                                    ?>
-                                    <option value="<?= $teamResults['playerTeamID']; ?>" selected><?= $currentPlayerTeam ?></option>
-                                    <?php else:?>
+                                <?php if($teamResult['teamName']  === $currentPlayerTeam) :?>
+                                    <option value="<?= $teamResult['id']; ?>" selected><?= $currentPlayerTeam; ?></option>
+                                    <?php else :?>
                                     <option value="<?= $teamResult['id']; ?>"><?= $teamResult['teamName']; ?></option>
                                 <?php endif ?>
                             <?php endforeach; ?>
