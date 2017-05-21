@@ -10,10 +10,6 @@ $playerResults = $connection->query($fetchPlayerSQL);
 $queryResults = getAllTeams();
 
 ?>
-
-
-
-
 <h1 class="page-title">NFL Standings 2016</h1>
     <?php if (!empty($playerResults)) : ?>
         <?php foreach ($playerResults as $playerResult) : ?>
@@ -38,8 +34,10 @@ $queryResults = getAllTeams();
                     <div class="form-field">
                         <label>Player's Team</label>
                         <select name="playerTeamID" id="">
+                            <?php foreach ($queryResults as $teamItem) : ?>
+                                <option value="<?= $teamItem['id'] ?>"><?= $teamItem['teamName'] ?></option>
+                            <?php endforeach; ?>
                         </select>
-<!--                        <input type="text" name="playerTeamID" value="--><?//= $playerResult['playerTeamID'] ;?><!--">-->
                     </div>
                 </div>
                 <button class="form-footer-btn" type="submit">Add Team</button>
