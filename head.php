@@ -37,6 +37,23 @@
     option{
         width: 100%;
     }
+    ul {
+        padding-left: 5px;
+        list-style: none;
+    }
+    ul strong {
+        width: 100%;
+        margin: 5px 0;
+        display: inline-block;
+    }
+    li {
+        width: 100%;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+    li:last-child {
+        margin-bottom: 0;
+    }
     .form-head,
 	.block-head {
 		width: 100%;
@@ -148,6 +165,14 @@
         line-height: 26px;
         padding-left: 5px;
         color: dimgrey;
+    }
+    .info h2 {
+        font-size: 22px;
+        padding-left: 5px;
+        padding-bottom: 8px;
+        margin-top: 20px;
+        margin-bottom: 5px;
+        border-bottom: 2px solid #1E3C71;
     }
 </style>
 <body>
