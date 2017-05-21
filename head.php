@@ -70,13 +70,15 @@
 		background: #f2f2f2;
 	}
 	label,
-	input {
+	input,
+    textarea {
 		display: block;
 	}
 	label {
 		margin-bottom: 8px;
 	}
-	input {
+	input,
+    textarea {
 		color: #222;
 		width: 100%;
 		height: 25px;
@@ -86,6 +88,10 @@
 		border-color: transparent;
 		font-family: 'Helvetica Neue', sans-serif;
 	}
+    textarea {
+        height: 120px;
+        padding: 10px 0;
+    }
 	.form-field {
 		margin-bottom: 20px;
 	}
