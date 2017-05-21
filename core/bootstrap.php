@@ -37,7 +37,7 @@ function getAllTeams() {
 function getPlayerTeamName($teamResults, $player) {
     foreach ($teamResults as $teamResult) {
         if ($teamResult['id'] === $player['playerTeamID']) {
-            return $teamResult['teamName'];
+            return html_entity_decode($teamResult['teamName']);
         }
     }
 }

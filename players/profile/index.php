@@ -5,21 +5,18 @@ require(__DIR__.'/../../core/bootstrap.php');
 $playerID = $_GET['playerID'];
 // statement
 $fetchPlayerSQL = "SELECT * FROM nfl_players WHERE id=$playerID";
-$playerResults = $connection->query($fetchPlayerSQL);
+$players = $connection->query($fetchPlayerSQL);
 
-$queryResults = getAllTeams();
-
-function getPlayerTeam() {
-
-}
+$teamResults = getAllTeams();
 
 ?>
 <h1 class="page-title">NFL Standings 2016</h1>
-    <?php if (!empty($playerResults)) : ?>
-        <?php foreach ($playerResults as $playerResult) : ?>
+    <?php if (!empty($players)) : ?>
+        <?php foreach ($players as $player) : ?>
+            <?php $currentPlayer = getPlayerTeamName($teamResults, $player); ?>
             <div class="info">
                 <div class="block-head">
-                    <h1><?= $playerResult['playerName'] ?></h1>
+                    <h1><?= $player['playerName'] ?></h1>
                 </div>
                 <ul>
                     <li><strong>Player's Team:</strong></li>
@@ -33,26 +30,30 @@ function getPlayerTeam() {
             <form id="add-team-form" method="POST" action="/players/profile/edit.php">
                 <?php require('../../feedback.php') ?>
                 <div class="block-head">
-                    <h1>Add Your Team</h1>
+                    <h1>Edit Player Info</h1>
                 </div>
                 <div class="form-body">
                     <div style="display: none;" class="form-field">
                         <label></label>
-                        <input type="text" name="playerID" value="<?= $playerResult['id']; ?>">
+                        <input type="text" name="playerID" value="<?= $player['id']; ?>">
                     </div>
                     <div class="form-field">
                         <label>Player Name</label>
-                        <input type="text" name="playerName" value="<?= $playerResult['playerName'] ;?>">
+                        <input type="text" name="playerName" value="<?= $player['playerName'] ;?>">
                     </div>
                     <div class="form-field">
                         <label>Field Position</label>
-                        <input type="text" name="playerPosition" value="<?= $playerResult['playerPosition'] ;?>">
+                        <input type="text" name="playerPosition" value="<?= $player['playerPosition'] ;?>">
                     </div>
                     <div class="form-field">
                         <label>Player's Team</label>
                         <select name="playerTeamID" id="">
-                            <?php foreach ($queryResults as $teamItem) : ?>
-                                <option value="<?= $teamItem['id'] ?>"><?= $teamItem['teamName'] ?></option>
+                            <?php foreach ($teamResults as $teamResult) :?>
+                                <?php if($teamResult['teamName']  === $currentPlayer) : ?>
+                                    <option value="<?= $currentPlayer?>" selected><?= $currentPlayer ?></option>
+                                    <?php else:?>
+                                    <option value="<?= $teamResult['teamName']; ?>"><?= $teamResult['teamName']; ?></option>
+                                <?php endif ?>
                             <?php endforeach; ?>
                         </select>
                     </div>
