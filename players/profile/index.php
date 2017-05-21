@@ -2,12 +2,18 @@
 require(__DIR__.'/../../head.php');
 require(__DIR__.'/../../core/bootstrap.php');
 
-$playerID = $_GET['q'];
+$playerID = $_GET['playerID'];
 // statement
 $fetchPlayerSQL = "SELECT * FROM nfl_players WHERE id=$playerID";
 $playerResults = $connection->query($fetchPlayerSQL);
-$connection->close();
+
+$queryResults = getAllTeams();
+
 ?>
+
+
+
+
 <h1 class="page-title">NFL Standings 2016</h1>
     <?php if (!empty($playerResults)) : ?>
         <?php foreach ($playerResults as $playerResult) : ?>
@@ -31,7 +37,9 @@ $connection->close();
                     </div>
                     <div class="form-field">
                         <label>Player's Team</label>
-                        <input type="text" name="playerTeamID" value="<?= $playerResult['playerTeamID'] ;?>">
+                        <select name="playerTeamID" id="">
+                        </select>
+<!--                        <input type="text" name="playerTeamID" value="--><?//= $playerResult['playerTeamID'] ;?><!--">-->
                     </div>
                 </div>
                 <button class="form-footer-btn" type="submit">Add Team</button>

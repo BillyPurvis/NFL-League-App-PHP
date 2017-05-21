@@ -1,6 +1,8 @@
 <?php
 require(__DIR__.'/../head.php');
 require(__DIR__.'/../core/bootstrap.php');
+
+$queryResults = getAllTeams();
 ?>
 
 <h1 class="page-title">NFL Players 2016</h1>
@@ -23,7 +25,7 @@ require(__DIR__.'/../core/bootstrap.php');
                 <?php endforeach; ?>
                 <td><?= html_entity_decode($player['playerPosition']); ?></td>
                 <td>
-                    <a class="btn" href="/players/profile/?q=<?= $player['id'] ?>">Edit</a>
+                    <a class="btn" href="/players/profile/?playerID=<?= $player['id'] ?>">Edit</a>
                 </td>
                 <td>
                     <a class="btn alt" href="/players/delete.php?playerID=<?= $player['id'] ?>">Delete</a>

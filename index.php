@@ -2,6 +2,8 @@
 require('head.php');
 require(__DIR__.'/core/bootstrap.php');
 
+
+$queryResults = getAllTeams();
 function queryFieldLength($queryResults) {
     return $queryResults->field_count;
 }
