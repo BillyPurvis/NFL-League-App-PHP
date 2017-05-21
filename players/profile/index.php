@@ -9,10 +9,27 @@ $playerResults = $connection->query($fetchPlayerSQL);
 
 $queryResults = getAllTeams();
 
+function getPlayerTeam() {
+
+}
+
 ?>
 <h1 class="page-title">NFL Standings 2016</h1>
     <?php if (!empty($playerResults)) : ?>
         <?php foreach ($playerResults as $playerResult) : ?>
+            <div class="info">
+                <div class="block-head">
+                    <h1><?= $playerResult['playerName'] ?></h1>
+                </div>
+                <ul>
+                    <li><strong>Player's Team:</strong></li>
+                    <li><strong>Player's Age:</strong></li>
+                </ul>
+                <span><strong>Player's Story</strong></span>
+                <p>
+                    ipsmu
+                </p>
+            </div>
             <form id="add-team-form" method="POST" action="/players/profile/edit.php">
                 <?php require('../../feedback.php') ?>
                 <div class="block-head">

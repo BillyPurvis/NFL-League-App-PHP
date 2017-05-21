@@ -2,7 +2,8 @@
 require(__DIR__.'/../head.php');
 require(__DIR__.'/../core/bootstrap.php');
 
-$queryResults = getAllTeams();
+$teamResults = getAllTeams();
+
 ?>
 
 <h1 class="page-title">NFL Players 2016</h1>
@@ -18,11 +19,7 @@ $queryResults = getAllTeams();
         <?php foreach ($players as $player) : ?>
             <tr>
                 <td><?= html_entity_decode($player['playerName']); ?></td>
-                <?php foreach ($queryResults as $teamItem) : ?>
-                    <?php if ($teamItem['id'] === $player['playerTeamID']) :?>
-                        <td><?= html_entity_decode($teamItem['teamName']); ?></td>
-                    <?php endif; ?>
-                <?php endforeach; ?>
+                <td><?= getPlayerTeamName($teamResults, $player); ?></td>
                 <td><?= html_entity_decode($player['playerPosition']); ?></td>
                 <td>
                     <a class="btn" href="/players/profile/?playerID=<?= $player['id'] ?>">Edit</a>
@@ -57,22 +54,12 @@ $queryResults = getAllTeams();
         <div class="form-field">
             <label>Player's Team</label>
             <select name="playerTeamID">
-                <?php foreach ($queryResults as $teamItem) : ?>
-                    <option value="<?= $teamItem['id'] ?>"><?= $teamItem['teamName'] ?></option>
+                <?php foreach ($teamResults as $teamResult) : ?>
+                    <option value="<?= $teamResult['id'] ?>"><?= $teamResult['teamName'] ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
     </div>
     <button class="form-footer-btn" type="submit">Add Team</button>
 </form>
-<div class="info">
-    <div class="block-head">
-        <h1>AFC & NFC</h1>
-    </div>
-    <p>
-        The <strong>ACF</strong> (American Football Conference) and <strong>NFC</strong> (National Football Conference), each with 16 teams within
-        their conference make up the <strong>32 NFL</strong> teams. Within the each conference, there are 4 divisions; North, East, South & West.
-    </p>
-</div>
-
 <?php require('../foot.php'); ?>
