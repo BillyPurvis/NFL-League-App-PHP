@@ -12,6 +12,7 @@ if(isset($_POST)) {
 // Fetch Form Data
 $playerID = $formDataArray['playerID'];
 $playerName = $formDataArray['playerName'];
+$playerAge = $formDataArray['playerAge'];
 $playerTeamID = $formDataArray['playerTeamID'];
 $playerBio = $formDataArray['playerBio'];
 $playerPosition = $formDataArray['playerPosition'];
@@ -19,6 +20,7 @@ $playerPosition = $formDataArray['playerPosition'];
 // Build Query
 $sqlQuery = "UPDATE nfl_players SET 
     playerName='$playerName',
+    playerAge='$playerAge',
     playerTeamID='$playerTeamID',
     playerBio='$playerBio',
     playerPosition='$playerPosition'

@@ -42,6 +42,10 @@ $teamResults = getAllTeams();
                         <input type="text" name="playerName" value="<?= $player['playerName'] ;?>">
                     </div>
                     <div class="form-field">
+                        <label for="playerAge">Player Age</label>
+                        <input type="number" name="playerAge" min="16" max="99" value="<?= $player['playerAge']?>">
+                    </div>
+                    <div class="form-field">
                         <label>Field Position</label>
                         <input maxlength="3" type="text" name="playerPosition" value="<?= $player['playerPosition'] ;?>">
                     </div>
@@ -49,10 +53,13 @@ $teamResults = getAllTeams();
                         <label>Player's Team</label>
                         <select name="playerTeamID" id="">
                             <?php foreach ($teamResults as $teamResult) :?>
-                                <?php if($teamResult['teamName']  === $currentPlayerTeam) : ?>
-                                    <option value="<?= $currentPlayerTeam?>" selected><?= $currentPlayerTeam ?></option>
+                                <?php if($teamResult['teamName']  === $currentPlayerTeam) :
+                                    // TODO Make team option value an integer id not string
+
+                                    ?>
+                                    <option value="<?= $teamResults['playerTeamID']; ?>" selected><?= $currentPlayerTeam ?></option>
                                     <?php else:?>
-                                    <option value="<?= $teamResult['teamName']; ?>"><?= $teamResult['teamName']; ?></option>
+                                    <option value="<?= $teamResult['id']; ?>"><?= $teamResult['teamName']; ?></option>
                                 <?php endif ?>
                             <?php endforeach; ?>
                         </select>

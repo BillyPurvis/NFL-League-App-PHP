@@ -10,6 +10,7 @@ $teamResults = getAllTeams();
 <table>
     <tr>
         <td>Player's Name</td>
+        <td>Player's Age</td>
         <td>Player's Team</td>
         <td>Player's Position</td>
         <td>Edit Player</td>
@@ -19,6 +20,7 @@ $teamResults = getAllTeams();
         <?php foreach ($players as $player) : ?>
             <tr>
                 <td><?= html_entity_decode($player['playerName']); ?></td>
+                <td><?= html_entity_decode($player['playerAge']); ?></td>
                 <td><?= getPlayerTeamName($teamResults, $player); ?></td>
                 <td><?= html_entity_decode($player['playerPosition']); ?></td>
                 <td>
@@ -46,6 +48,10 @@ $teamResults = getAllTeams();
         <div class="form-field">
             <label>Player Name</label>
             <input type="text" name="playerName">
+        </div>
+        <div class="form-field">
+            <label for="playerAge">Player Age</label>
+            <input type="number" name="playerAge" min="16" max="99">
         </div>
         <div class="form-field">
             <label>Field Position</label>
