@@ -27,6 +27,21 @@ function getAllTeams() {
 }
 
 /**
+ * Return a single team row
+ * @param $id, integer, team ID in database
+ */
+function getSingleTeam($id) {
+    global $connection;
+
+    $statement = "SELECT * FROM nfl_teams WHERE id=$id";
+
+    $teamResults = $connection->query($statement);
+
+    foreach ($teamResults as $teamResult) {
+        return $teamResult;
+    }
+}
+/**
  * Returns the the current player's teamID converted into there
  * relative teamName
  *
