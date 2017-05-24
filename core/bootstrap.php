@@ -41,3 +41,19 @@ function getPlayerTeamName($teamResults, $player) {
         }
     }
 }
+
+/**
+ *  Moves the passed file to the passed upload dir
+ * @param $file, Array, The passed file object
+ * @param $uploadDir, String, Destinaition directory
+ */
+function imageUpload($file, $uploadDir) {
+
+    $tmpFileName = $file['tmp_name'];
+    $fileName = $file['name'];
+
+    move_uploaded_file($tmpFileName,$uploadDir.$fileName);
+
+    return $uploadDir.$fileName;
+
+}
