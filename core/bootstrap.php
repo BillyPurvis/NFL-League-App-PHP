@@ -19,7 +19,7 @@ function getAllTeams() {
     } elseif (isset($divisionOpt)) {
         $statementAppend = "WHERE teamDivision='$divisionOpt'";
     }
-// statement
+    // statement
     $statement = "SELECT * FROM nfl_teams $statementAppend ORDER BY $orderBy DESC";
 
 
@@ -52,7 +52,12 @@ function imageUpload($file, $uploadDir) {
     $tmpFileName = $file['tmp_name'];
     $fileName = $file['name'];
 
-    move_uploaded_file($tmpFileName,$uploadDir.$fileName);
+    // Check if file exists
+    if(!file_exists($uploadDir.$fileName)) {
+        move_uploaded_file($tmpFileName,$uploadDir.$fileName);
+    } else {
+        $_SESSION['upload_error'] = "Duplicate Image";
+    }
 
     return $uploadDir.$fileName;
 
