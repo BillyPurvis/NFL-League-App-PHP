@@ -1,3 +1,6 @@
 core/config.php
 core/connection.php
 .idea/
+
+# images
+uploads/

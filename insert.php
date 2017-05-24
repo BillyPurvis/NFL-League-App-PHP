@@ -19,10 +19,17 @@ $teamWins 	  = $formDataArray['teamWins'];
 $teamLoses	  = $formDataArray['teamLoses'];
 $teamTies 	  = $formDataArray['teamTies'];
 $teamTDs 	  = $formDataArray['teamTDs'];
+/**
+ * Handle file uploads
+ */
+$imageFileName = $_FILES['teamLogo']['name'];
+$imageFilePath = 'uploads/'.$imageFileName;
 
+
+move_uploaded_file($_FILES['teamLogo']['tmp_name'], $imageFilePath);
 
 // Build Query
-$sqlQuery = "INSERT INTO nfl_teams (teamName, teamConference, teamDivision, teamPoints, teamPF, teamPA, teamWins, teamLoses, teamTies, teamTDs) VALUES ('$teamName', '$teamConf', '$teamDivision', $teamPF-$teamPA, $teamPF, $teamPA, $teamWins, $teamLoses, $teamTies, $teamTDs)";
+$sqlQuery = "INSERT INTO nfl_teams (teamName, teamConference, teamDivision, teamPoints, teamPF, teamPA, teamWins, teamLoses, teamTies, teamTDs, teamLogo) VALUES ('$teamName', '$teamConf', '$teamDivision', $teamPF-$teamPA, $teamPF, $teamPA, $teamWins, $teamLoses, $teamTies, $teamTDs, '$imageFilePath')";
 
 if(!$connection->query($sqlQuery)) {
     $_SESSION['error'] = $connection->error;

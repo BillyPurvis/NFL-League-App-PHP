@@ -55,12 +55,16 @@ function queryFieldLength($queryResults) {
     <?php endif; ?>
 
 </table>
-<form id="add-team-form" method="POST" action="/insert.php">
+<form id="add-team-form" method="POST" action="/insert.php" enctype="multipart/form-data">
     <?php require('feedback.php') ?>
     <div class="block-head">
         <h1>Add Your Team</h1>
     </div>
     <div class="form-body">
+        <div class="form-field">
+            <label>Team Logo</label>
+            <input type="file" name="teamLogo">
+        </div>
         <div class="form-field">
             <label>Team Name</label>
             <input type="text" name="teamName">

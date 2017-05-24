@@ -88,6 +88,10 @@
 		border-color: transparent;
 		font-family: 'Helvetica Neue', sans-serif;
 	}
+    img {
+        margin-top: 15px ;
+        max-width: 120px;
+    }
     textarea {
         height: 120px;
         padding: 10px 5px;
