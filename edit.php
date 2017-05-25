@@ -5,7 +5,6 @@ if(isset($_POST)) {
     // Sanitize data
     $formDataArray = [];
     foreach ($_POST as $key => $value) {
-        // $value = htmlentities($value, ENT_QUOTES);
         $formDataArray[$key] = htmlspecialchars(mysqli_real_escape_string($connection, $value));
     }
 }
@@ -18,6 +17,15 @@ $teamWins 	= $formDataArray['teamWins'];
 $teamLoses	= $formDataArray['teamLoses'];
 $teamTies 	= $formDataArray['teamTies'];
 $teamTDs 	= $formDataArray['teamTDs'];
+
+/**
+ * Upload and check for file, return error
+ * otherwise continue with SQL Query
+ */
+
+$teamLogoFile = $_FILES['teamLogo'];
+$uploadDir = 'uploads/';
+$teamLogoName  = imageUpload($teamLogoFile, $uploadDir);
 // Build Query
 $sqlQuery = "UPDATE nfl_teams SET 
     teamName='$teamName',
@@ -26,16 +34,20 @@ $sqlQuery = "UPDATE nfl_teams SET
     teamWins='$teamWins',
     teamLoses='$teamLoses',
     teamTies='$teamTies',
-    teamTDs='$teamTDs'
+    teamTDs='$teamTDs',
+    teamLogo='$teamLogoName'
 WHERE id=$teamID";
 
-if(!$connection->query($sqlQuery)) {
-    $_SESSION['error'] = $connection->error;
-} else {
-    $_SESSION['success'] = "Successfully updated $teamName!";
+// if file exists, SQL won't be executed
+if(empty($_SESSION['upload_error'])) {
+    if(!$connection->query($sqlQuery)) {
+        $_SESSION['error'] = $connection->error;
+    } else {
+        $_SESSION['success'] = "Succesfully added $teamName!";
+    }
 }
 
-header('location: /');
+header('location: /team/?q='.$teamID);
 
 
 
