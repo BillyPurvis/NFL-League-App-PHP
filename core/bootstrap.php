@@ -64,16 +64,21 @@ function getPlayerTeamName($teamResults, $player) {
  */
 function imageUpload($file, $uploadDir) {
 
+    // 1MB max upload
+    $maxUploadSize = 1048576;
+
+    // Get file data
     $tmpFileName = $file['tmp_name'];
     $fileName = $file['name'];
+    $fileInfo = getimagesize($tmpFileName);
 
-    // Check if file exists
-    if(!file_exists($uploadDir.$fileName)) {
+    // Check if file isn't too large
+    if ($fileInfo === false) {
+        $_SESSION['upload_error'] = "The was an error with your upload, check the file is correct and less than 1MB";
+    } elseif (!file_exists($uploadDir.$fileName) && $fileInfo['size'] < $maxUploadSize) {
         move_uploaded_file($tmpFileName,$uploadDir.$fileName);
     } else {
-        $_SESSION['upload_error'] = "Duplicate Image";
+        $_SESSION['upload_error'] = "Check image doesn't already exist, or exceeds 1MB";
     }
-
     return $uploadDir.$fileName;
-
 }
