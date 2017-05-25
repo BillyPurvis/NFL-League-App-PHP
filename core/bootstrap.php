@@ -82,3 +82,12 @@ function imageUpload($file, $uploadDir) {
     }
     return $uploadDir.$fileName;
 }
+
+
+function removeImage($id) {
+
+    $image = getSingleTeam($id)['teamLogo'];
+
+    unlink($image);
+
+}
