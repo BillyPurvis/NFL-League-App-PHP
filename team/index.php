@@ -25,6 +25,11 @@ $connection->close();
                         <input type="text" name="teamID" value="<?= $teamID; ?>">
                     </div>
                     <div class="form-field">
+                        <label>Team Logo</label>
+                        <input type="file" name="teamLogo">
+                        <button><a href="/delete-image.php?id=<?= $teamID; ?>">Delete Image</a></button>
+                    </div>
+                    <div class="form-field">
                         <label>Team Name</label>
                         <input type="text" name="teamName" value="<?= html_entity_decode($teamItem['teamName']); ?>">
                     </div>
