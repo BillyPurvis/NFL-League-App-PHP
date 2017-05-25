@@ -14,9 +14,11 @@ $connection->close();
             <form id="add-team-form" method="POST" action="../edit.php">
                 <?php require('../feedback.php') ?>
                 <div class="form-head">
-                    <div class="team-logo">
-                        <img src="/<?= $teamItem['teamLogo'];?>" alt="">
-                    </div>
+                    <?php if (!empty($teamItem['teamLogo'])) : ?>
+                        <div class="team-logo">
+                            <img src="/<?= $teamItem['teamLogo'];?>" alt="">
+                        </div>
+                    <?php endif; ?>
                     <h1>Edit Your Team</h1>
                 </div>
                 <div class="form-body">
