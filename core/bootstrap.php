@@ -83,11 +83,25 @@ function imageUpload($file, $uploadDir) {
     return $uploadDir.$fileName;
 }
 
+/**
+ * Deletes the image associated to a user
+ * @param $id, String, The current items MySQL row id
+ * @param $table, String, Table to query
+ * @param $columnName, String, column to delete image path from
+ */
+function removeImage($id, $table, $columnName) {
+    global $connection;
 
-function removeImage($id) {
-
-    $image = getSingleTeam($id)['teamLogo'];
-
+    $image = getSingleTeam($id)[$columnName];
     unlink($image);
+
+    // Empty image path column
+    $statement =  "UPDATE $table SET teamLogo='' WHERE id='$id'";
+
+    if(!$connection->query($statement)) {
+        $_SESSION['error'] = $connection->error;
+    } else {
+        $_SESSION['success'] = "Successfully removed image!";
+    }
 
 }
