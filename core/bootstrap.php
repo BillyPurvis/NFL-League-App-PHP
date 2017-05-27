@@ -96,7 +96,7 @@ function removeImage($id, $table, $columnName) {
     unlink($image);
 
     // Empty image path column
-    $statement =  "UPDATE $table SET teamLogo='' WHERE id='$id'";
+    $statement =  "UPDATE $table SET $columnName='' WHERE id='$id'";
 
     if(!$connection->query($statement)) {
         $_SESSION['error'] = $connection->error;
