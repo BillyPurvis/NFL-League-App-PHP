@@ -18,6 +18,11 @@ $teamResults = getAllTeams();
                 <div class="block-head">
                     <h1><?= $player['playerName'] ?></h1>
                 </div>
+                <?php if (!empty($player['playerImage'])) : ?>
+                    <div class="team-logo">
+                        <img src="/<?= $player['playerImage'];?>" alt="">
+                    </div>
+                <?php endif; ?>
                 <ul>
                     <li><strong>Player's Team:</strong> <?= $currentPlayerTeam; ?></li>
                     <li><strong>Player's Age:</strong> <?= $player['playerAge']; ?></li>
@@ -27,7 +32,7 @@ $teamResults = getAllTeams();
                     <?= $player['playerBio']; ?>
                 </p>
             </div>
-            <form id="add-team-form" method="POST" action="/players/profile/edit.php">
+            <form id="add-team-form" method="POST" action="/players/profile/edit.php" enctype="multipart/form-data">
                 <?php require('../../feedback.php') ?>
                 <div class="block-head">
                     <h1>Edit Player Info</h1>
@@ -36,6 +41,13 @@ $teamResults = getAllTeams();
                     <div style="display: none;" class="form-field">
                         <label></label>
                         <input type="text" name="playerID" value="<?= $player['id']; ?>">
+                    </div>
+                    <div class="form-field">
+                        <label>Player Image</label>
+                        <input type="file" name="playerImage">
+                        <?php if (!empty($player['playerImage'])) : ?>
+                            <button><a href="../delete-image.php?id=<?= $playerID; ?>">Delete Image</a></button>
+                        <?php endif; ?>
                     </div>
                     <div class="form-field">
                         <label>Player Name</label>

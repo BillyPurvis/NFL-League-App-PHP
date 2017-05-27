@@ -16,15 +16,26 @@ $playerTeamID = $formDataArray['playerTeamID'];
 $playerBio = $formDataArray['playerBio'];
 $playerPosition = $formDataArray['playerPosition'];
 
-$sqlQuery = "INSERT INTO nfl_players (playerName,playerAge, playerTeamID, playerBio, playerPosition)
-VALUES ('$playerName','$playerAge','$playerTeamID','$playerBio','$playerPosition')";
+/**
+ * Upload and check for file, return error
+ * otherwise continue with SQL Query
+ */
 
-if(!$connection->query($sqlQuery)) {
-    $_SESSION['error'] = $connection->error;
-} else {
-    $_SESSION['success'] = "Succesfully added $playerName";
+$playerImage = $_FILES['playerImage'];
+$uploadDir = '../uploads/players/';
+$playerImageName  = imageUpload($playerImage, $uploadDir);
+
+$sqlQuery = "INSERT INTO nfl_players (playerImage, playerName,playerAge, playerTeamID, playerBio, playerPosition)
+VALUES ('$playerImageName','$playerName','$playerAge','$playerTeamID','$playerBio','$playerPosition')";
+
+// if file exists, SQL won't be executed
+if(empty($_SESSION['upload_error'])) {
+    if(!$connection->query($sqlQuery)) {
+        $_SESSION['error'] = $connection->error;
+    } else {
+        $_SESSION['success'] = "Succesfully added $playerName!";
+    }
 }
-
 header('location: /players');
 
 

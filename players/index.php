@@ -39,12 +39,16 @@ $teamResults = getAllTeams();
     <?php endif; ?>
 
 </table>
-<form id="add-team-form" method="POST" action="/players/insert.php">
+<form id="add-team-form" method="POST" action="/players/insert.php" enctype="multipart/form-data">
     <?php require('../feedback.php') ?>
     <div class="block-head">
         <h1>Add Your Team</h1>
     </div>
     <div class="form-body">
+        <div class="form-field">
+            <label>Player Image</label>
+            <input type="file" name="playerImage">
+        </div>
         <div class="form-field">
             <label>Player Name</label>
             <input type="text" name="playerName">

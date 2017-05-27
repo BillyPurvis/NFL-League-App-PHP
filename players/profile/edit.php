@@ -17,19 +17,32 @@ $playerTeamID = $formDataArray['playerTeamID'];
 $playerBio = $formDataArray['playerBio'];
 $playerPosition = $formDataArray['playerPosition'];
 
+/**
+ * Upload and check for file, return error
+ * otherwise continue with SQL Query
+ */
+
+$playerImage = $_FILES['playerImage'];
+$uploadDir = '../../uploads/players/';
+$playerImageName  = imageUpload($playerImage, $uploadDir);
+
 // Build Query
 $sqlQuery = "UPDATE nfl_players SET 
     playerName='$playerName',
     playerAge='$playerAge',
     playerTeamID='$playerTeamID',
     playerBio='$playerBio',
-    playerPosition='$playerPosition'
+    playerPosition='$playerPosition',
+    playerImage='$playerImageName'
 WHERE id=$playerID";
 
-if(!$connection->query($sqlQuery)) {
-    $_SESSION['error'] = $connection->error;
-} else {
-    $_SESSION['success'] = "Successfully updated $teamName!";
+// if file exists, SQL won't be executed
+if(empty($_SESSION['upload_error'])) {
+    if(!$connection->query($sqlQuery)) {
+        $_SESSION['error'] = $connection->error;
+    } else {
+        $_SESSION['success'] = "Succesfully edited $playerName!";
+    }
 }
 
 header('location: /players');

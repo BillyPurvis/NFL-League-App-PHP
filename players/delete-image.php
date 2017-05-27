@@ -1,9 +1,9 @@
 <?php
 
-require(__DIR__.'/core/bootstrap.php');
+require(__DIR__.'/../core/bootstrap.php');
 
-$teamID = $_GET['id'];
+$playerID = $_GET['id'];
 
-removeImage($teamID, "nfl_teams", "teamLogo");
+removeImage($playerID, "nfl_players", "playerImage");
 
-header('location: /team/?q='.$teamID);
+header('location: /players');
