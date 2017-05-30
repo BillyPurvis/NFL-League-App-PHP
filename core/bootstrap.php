@@ -75,14 +75,50 @@ function imageUpload($file, $uploadDir) {
     // Check if file isn't too large
     if ($fileInfo === false) {
         $_SESSION['upload_error'] = "The was an error with your upload, check the file is correct and less than 1MB";
-    } elseif (!file_exists($uploadDir.$fileName) && $fileInfo['size'] < $maxUploadSize) {
+    } elseif (!file_exists($uploadDir.$fileName) && $fileInfo['size'] < $maxUploadSize && $fileInfo['size'] > 0) {
         move_uploaded_file($tmpFileName,$uploadDir.$fileName);
     } else {
-        $_SESSION['upload_error'] = "Check image doesn't already exist, or exceeds 1MB";
+
     }
     return $uploadDir.$fileName;
 }
 
+function isImage($file) {
+
+    $fileNameTMP = $file['tmp_name'];
+    $fileData = getimagesize($fileNameTMP);
+
+    // Confirms it is an image
+    if($fileData) {
+        return true;
+    }
+    return false;
+}
+
+function uploadTeamImage($file) {
+
+    $maxUploadSize = 1048576;
+    $uploadDir = 'uploads/';
+
+    $fileName = $file['name'];
+    $fileTMP = $file['tmp_name'];
+
+    $fileSize = $file['size'];
+    $isImage = isImage($file);
+
+    if($isImage) {
+        if($fileSize < $maxUploadSize && !file_exists($uploadDir.$file['name'])) {
+            move_uploaded_file($fileTMP,$uploadDir.$fileName);
+            return $uploadDir.$fileName;
+        } elseif ($fileSize > $maxUploadSize) {
+            $_SESSION['upload_error'] = "File too large";
+        } else {
+            $_SESSION['upload_error'] = "File already exists";
+        }
+    }
+    $_SESSION['upload_error'] = "Image too large. Image limit is 1MB ";
+
+}
 /**
  * Deletes the image associated to a user
  * @param $id, String, The current items MySQL row id
@@ -91,7 +127,7 @@ function imageUpload($file, $uploadDir) {
  */
 function removeImage($id, $table, $columnName) {
     global $connection;
-
+    // TODO Stop chaning
     $image = getSingleTeam($id)[$columnName];
     unlink($image);
 
