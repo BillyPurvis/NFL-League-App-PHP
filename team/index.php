@@ -5,12 +5,12 @@ require(__DIR__.'/../core/bootstrap.php');
 $teamID = $_GET['q'];
 // statement
 $fetchSingleQuery = "SELECT * FROM nfl_teams WHERE id=$teamID";
-$queryResults = $connection->query($fetchSingleQuery);
+$teamResult = $connection->query($fetchSingleQuery);
+$teamItem = mysqli_fetch_assoc($teamResult);
 $connection->close();
 ?>
 <h1 class="page-title">NFL Standings 2016</h1>
-    <?php if (!empty($queryResults)) : ?>
-        <?php foreach ($queryResults as $teamItem) : ?>
+    <?php if (!empty($teamItem)) : ?>
             <form id="add-team-form" method="POST" action="../edit.php" enctype="multipart/form-data">
                 <?php require('../feedback.php') ?>
                 <div class="form-head">
@@ -84,8 +84,6 @@ $connection->close();
                 </div>
                 <button class="form-footer-btn" type="submit">Save Team Updates</button>
             </form>
-
-        <?php endforeach; ?>
     <?php endif; ?>
 <?php require('../foot.php'); ?>
 

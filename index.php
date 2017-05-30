@@ -10,6 +10,15 @@ function queryFieldLength($queryResults) {
 ?>
 
 <h1 class="page-title">NFL Standings 2016</h1>
+    <div class="info">
+        <div class="block-head">
+            <h1>AFC & NFC</h1>
+        </div>
+        <p>
+            The <strong>ACF</strong> (American Football Conference) and <strong>NFC</strong> (National Football Conference), each with 16 teams within
+            their conference make up the <strong>32 NFL</strong> teams. Within the each conference, there are 4 divisions; North, East, South & West.
+        </p>
+    </div>
 <table>
     <tr>
         <td>NFL Team</td>
@@ -55,6 +64,7 @@ function queryFieldLength($queryResults) {
     <?php endif; ?>
 
 </table>
+
 <form id="add-team-form" method="POST" action="/insert.php" enctype="multipart/form-data">
     <?php require('feedback.php') ?>
     <div class="block-head">
@@ -116,14 +126,4 @@ function queryFieldLength($queryResults) {
     </div>
     <button class="form-footer-btn" type="submit">Add Team</button>
 </form>
-<div class="info">
-    <div class="block-head">
-        <h1>AFC & NFC</h1>
-    </div>
-    <p>
-        The <strong>ACF</strong> (American Football Conference) and <strong>NFC</strong> (National Football Conference), each with 16 teams within
-        their conference make up the <strong>32 NFL</strong> teams. Within the each conference, there are 4 divisions; North, East, South & West.
-    </p>
-</div>
-
 <?php require('foot.php'); ?>

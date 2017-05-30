@@ -6,4 +6,4 @@ $playerID = $_GET['id'];
 
 removeImage($playerID, "nfl_players", "playerImage");
 
-header('location: /players');
+header('location: /players/profile/?playerID='.$playerID);

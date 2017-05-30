@@ -22,10 +22,20 @@ $teamTDs 	= $formDataArray['teamTDs'];
  * Upload and check for file, return error
  * otherwise continue with SQL Query
  */
-
 $teamLogoFile = $_FILES['teamLogo'];
-$uploadDir = 'uploads/';
-$teamLogoName  = imageUpload($teamLogoFile, $uploadDir);
+
+$filePath = uploadTeamImage($teamLogoFile);
+
+//
+//if($teamLogoFile['size'] > 0) {
+//    $uploadDir = 'uploads/';
+//    $teamLogoName  = imageUpload($teamLogoFile, $uploadDir);
+//}
+//uploadTeamImage($teamLogoFile);
+
+
+
+
 // Build Query
 $sqlQuery = "UPDATE nfl_teams SET 
     teamName='$teamName',
@@ -35,7 +45,7 @@ $sqlQuery = "UPDATE nfl_teams SET
     teamLoses='$teamLoses',
     teamTies='$teamTies',
     teamTDs='$teamTDs',
-    teamLogo='$teamLogoName'
+    teamLogo='$filePath'
 WHERE id=$teamID";
 
 // if file exists, SQL won't be executed

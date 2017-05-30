@@ -168,7 +168,8 @@
 	}
     .info {
         width: 400px;
-        float: left;
+        margin: 30px 0;
+
     }
     .info p {
         font-size: 16px;

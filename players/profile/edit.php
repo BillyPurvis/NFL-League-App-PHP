@@ -45,7 +45,7 @@ if(empty($_SESSION['upload_error'])) {
     }
 }
 
-header('location: /players');
+header('location: /players/profile/?playerID='.$playerID);
 
 
 
