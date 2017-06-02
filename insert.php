@@ -22,7 +22,6 @@ $teamTDs 	  = $formDataArray['teamTDs'];
 
 // Upload img
 $uploadErrors = [];
-$teamLogoName = '';
 $file = $_FILES['teamLogo'];
 $fileErrorCode = $file['error'];
 
@@ -30,6 +29,7 @@ if(!empty($fileErrorCode)) {
     array_push($uploadErrors, 'Issue');
 } else {
     $uploadPath = uploadTeamImage($file);
+
     if($uploadPath !== false) {
         $teamLogoName = $uploadPath;
     }
