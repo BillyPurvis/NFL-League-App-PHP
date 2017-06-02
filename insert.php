@@ -20,18 +20,26 @@ $teamLoses	  = $formDataArray['teamLoses'];
 $teamTies 	  = $formDataArray['teamTies'];
 $teamTDs 	  = $formDataArray['teamTDs'];
 
-/**
- * Upload and check for file, return error
- * otherwise continue with SQL Query
- */
+// Upload img
+$uploadErrors = [];
+$teamLogoName = '';
+$file = $_FILES['teamLogo'];
+$fileErrorCode = $file['error'];
 
-$teamLogoFile = $_FILES['teamLogo'];
-$uploadDir = 'uploads/';
-$teamLogoName  = imageUpload($teamLogoFile, $uploadDir);
-
-
+if(!empty($fileErrorCode)) {
+    array_push($uploadErrors, 'Issue');
+} else {
+    $uploadPath = uploadTeamImage($file);
+    if($uploadPath !== false) {
+        $teamLogoName = $uploadPath;
+    }
+}
 // Build Query
-$sqlQuery = "INSERT INTO nfl_teams (teamName, teamConference, teamDivision, teamPoints, teamPF, teamPA, teamWins, teamLoses, teamTies, teamTDs, teamLogo) VALUES ('$teamName', '$teamConf', '$teamDivision', $teamPF-$teamPA, $teamPF, $teamPA, $teamWins, $teamLoses, $teamTies, $teamTDs, '$teamLogoName')";
+$sqlQuery = "INSERT INTO nfl_teams (teamName, teamConference, teamDivision,
+ teamPoints, teamPF, teamPA, teamWins, teamLoses, teamTies, teamTDs, teamLogo) 
+ VALUES ('$teamName', '$teamConf', '$teamDivision',
+  $teamPF-$teamPA, $teamPF, $teamPA, $teamWins, 
+  $teamLoses, $teamTies, $teamTDs, '$teamLogoName')";
 
 
 // if file exists, SQL won't be executed
@@ -39,7 +47,7 @@ if(empty($_SESSION['upload_error'])) {
     if(!$connection->query($sqlQuery)) {
         $_SESSION['error'] = $connection->error;
     } else {
-        $_SESSION['success'] = "Succesfully added $teamName!";
+        $_SESSION['success'] = "Success!";
     }
 }
 
