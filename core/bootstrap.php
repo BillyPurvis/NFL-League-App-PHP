@@ -57,68 +57,44 @@ function getPlayerTeamName($teamResults, $player) {
     }
 }
 
-/**
- *  Moves the passed file to the passed upload dir
- * @param $file, Array, The passed file object
- * @param $uploadDir, String, Destinaition directory
- */
-function imageUpload($file, $uploadDir) {
-
-    // 1MB max upload
-    $maxUploadSize = 1048576;
-
-    // Get file data
-    $tmpFileName = $file['tmp_name'];
-    $fileName = $file['name'];
-    $fileInfo = getimagesize($tmpFileName);
-
-    // Check if file isn't too large
-    if ($fileInfo === false) {
-        $_SESSION['upload_error'] = "The was an error with your upload, check the file is correct and less than 1MB";
-    } elseif (!file_exists($uploadDir.$fileName) && $fileInfo['size'] < $maxUploadSize && $fileInfo['size'] > 0) {
-        move_uploaded_file($tmpFileName,$uploadDir.$fileName);
-    } else {
-
-    }
-    return $uploadDir.$fileName;
-}
 
 function isImage($file) {
 
-    $fileNameTMP = $file['tmp_name'];
-    $fileData = getimagesize($fileNameTMP);
+    $fileIsImage = getimagesize($file);
 
-    // Confirms it is an image
-    if($fileData) {
-        return true;
+    if(!$fileIsImage) {
+        return false;
     }
-    return false;
+
+    return true;
 }
 
-function uploadTeamImage($file) {
+function isImageSizeExceeded($fileSize) {
 
     $maxUploadSize = 1048576;
-    $uploadDir = 'uploads/';
 
-    $fileName = $file['name'];
-    $fileTMP = $file['tmp_name'];
-
-    $fileSize = $file['size'];
-    $isImage = isImage($file);
-
-    if($isImage) {
-        if($fileSize < $maxUploadSize && !file_exists($uploadDir.$file['name'])) {
-            move_uploaded_file($fileTMP,$uploadDir.$fileName);
-            return $uploadDir.$fileName;
-        } elseif ($fileSize > $maxUploadSize) {
-            $_SESSION['upload_error'] = "File too large";
-        } else {
-            $_SESSION['upload_error'] = "File already exists";
-        }
+    if($fileSize > $maxUploadSize) {
+        return true;
     }
-    $_SESSION['upload_error'] = "Image too large. Image limit is 1MB ";
+
+    return false;
 
 }
+// Upload image
+function uploadTeamImage($file) {
+
+    $uploadDir = 'uploads/';
+    $isImage = isImage($file['tmp_name']);
+    $isImageSizeExceeded  = isImageSizeExceeded($file['size']);
+
+    if($isImage && !$isImageSizeExceeded) {
+        move_uploaded_file($file['tmp_name'], $uploadDir.$file['name']);
+        return $uploadDir.$file['name'];
+    } else {
+        return false;
+    }
+}
+
 /**
  * Deletes the image associated to a user
  * @param $id, String, The current items MySQL row id
@@ -140,4 +116,14 @@ function removeImage($id, $table, $columnName) {
         $_SESSION['success'] = "Successfully removed image!";
     }
 
+}
+
+function createTeam($query) {
+    global $connection;
+
+    if(!$connection->query($query)) {
+        $_SESSION['error'] = "Failed to create team";
+        return;
+    }
+    $_SESSION['success'] = "Created team.";
 }
